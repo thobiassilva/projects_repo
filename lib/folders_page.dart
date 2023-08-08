@@ -23,6 +23,13 @@ class _FoldersPageState extends State<FoldersPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Projects Repository'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: _controller.clearPaths,
+            tooltip: 'Limpar todos caminhos',
+          ),
+        ],
       ),
       body: ValueListenableBuilder(
         valueListenable: _controller.foldersState,
@@ -40,7 +47,7 @@ class _FoldersPageState extends State<FoldersPage> {
               return Card(
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () => _controller.openFolderOnVSCode(directory),
                   child: Column(
                     children: [
                       const Expanded(

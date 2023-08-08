@@ -54,4 +54,14 @@ class Controller {
     }
     foldersState.value = folders;
   }
+
+  Future<void> clearPaths() async {
+    _paths.value.clear();
+    await savePathsToStorage();
+    await loadFolders();
+  }
+
+  void openFolderOnVSCode(Directory folder) {
+    Process.start('code', [folder.path], runInShell: true);
+  }
 }
